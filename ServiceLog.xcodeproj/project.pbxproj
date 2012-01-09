@@ -23,11 +23,11 @@
 		4DFB85B714BBAB6A00771A80 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4DFB85B914BBAB6A00771A80 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4DFB85BB14BBAB6A00771A80 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		4DFB85BF14BBAB6A00771A80 /* ServiceLog-Info.plist */ = {isa = PBXFileReference; path = "ServiceLog-Info.plist"; sourceTree = "<group>"; };
+		4DFB85BF14BBAB6A00771A80 /* ServiceLog-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ServiceLog-Info.plist"; sourceTree = "<group>"; };
 		4DFB85C114BBAB6A00771A80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4DFB85C314BBAB6A00771A80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4DFB85C514BBAB6A00771A80 /* ServiceLog-Prefix.pch */ = {isa = PBXFileReference; path = "ServiceLog-Prefix.pch"; sourceTree = "<group>"; };
-		4DFB85C614BBAB6A00771A80 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		4DFB85C514BBAB6A00771A80 /* ServiceLog-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ServiceLog-Prefix.pch"; sourceTree = "<group>"; };
+		4DFB85C614BBAB6A00771A80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4DFB85C714BBAB6A00771A80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4DFB85CA14BBAB6A00771A80 /* ServiceLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ServiceLog.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
