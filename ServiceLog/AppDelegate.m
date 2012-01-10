@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "CarsViewController.h"
+#import "Car.h"
 
 @implementation AppDelegate
 
@@ -17,6 +19,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"TestDataLoaded"])
+    {
+        // Test data
+        Car *car = [NSEntityDescription insertNewObjectForEntityForName:@"Car" inManagedObjectContext:self.managedObjectContext];
+        car.year = [NSNumber numberWithInteger:2006];
+        car.make = @"Mazda";
+        car.model = @"6";
+        
+        Car *SUV = [NSEntityDescription insertNewObjectForEntityForName:@"Car" inManagedObjectContext:self.managedObjectContext];
+        SUV.year = [NSNumber numberWithInt:2004];
+        SUV.make = @"Ford";
+        SUV.model = @"Escape";
+        
+        Car *hatchback = [NSEntityDescription insertNewObjectForEntityForName:@"Car" inManagedObjectContext:self.managedObjectContext];
+        hatchback.year = [NSNumber numberWithInt:2006];
+        hatchback.make = @"Mazda";
+        hatchback.model = @"3";
+    
+        [self.managedObjectContext save:nil];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TestDataLoaded"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    
+    CarsViewController *cvc = (CarsViewController *)[(UINavigationController *)self.window.rootViewController topViewController];
+    cvc.managedObjectContext = self.managedObjectContext;
     [self.window makeKeyAndVisible];
     return YES;
 }

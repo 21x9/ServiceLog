@@ -44,11 +44,18 @@
                                         </view>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="MOE-yX-6im" id="RW5-yy-rrt"/>
+                                    <outlet property="delegate" destination="MOE-yX-6im" id="nCi-qE-d9o"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Cars" id="bn4-31-wBz"/>
+                    <connections>
+                        <outlet property="tableView" destination="XU0-IC-0u2" id="gj5-BP-68F"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="342" y="11"/>
@@ -71,6 +78,9 @@
     <classes>
         <class className="CarsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CarsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

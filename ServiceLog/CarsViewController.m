@@ -7,45 +7,76 @@
 //
 
 #import "CarsViewController.h"
+#import "Car.h"
+
+@interface CarsViewController ()
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+- (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+#pragma mark - 
 
 @implementation CarsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize managedObjectContext;
+@synthesize tableView;
+
+@synthesize fetchedResultsController;
+
+#pragma mark - Getters
+- (NSFetchedResultsController *)fetchedResultsController
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (!fetchedResultsController)
+    {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"year" ascending:YES];
+        fetchRequest.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"CarsCache"];
+        fetchedResultsController.delegate = self;
+        
+        NSError *error = nil;
+        
+        if (![fetchedResultsController performFetch:&error])
+            NSLog(@"Could not perform fetch. %@, %@", error, error.userInfo);
     }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
+    return fetchedResultsController;
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
+#pragma mark - View Lifecycle
 - (void)viewDidUnload
 {
+    self.tableView = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+#pragma mark - UITableViewDataSource Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return self.fetchedResultsController.sections.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[self.fetchedResultsController.sections objectAtIndex:section] numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CarCell"];
+    [self configureCell:cell forRowAtIndexPath:indexPath];
+    return cell;
+}
+                           
+#pragma mark UITableViewDataSource Helper Methods
+- (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Car *car = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", car.make, car.model];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i", [car.year integerValue]];
 }
 
 @end

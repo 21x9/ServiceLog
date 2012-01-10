@@ -17,6 +17,7 @@
 		4DFB85CB14BBAB6A00771A80 /* ServiceLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB85C914BBAB6A00771A80 /* ServiceLog.xcdatamodeld */; };
 		7B82621314BCE9D800F79B8A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B82621214BCE9D800F79B8A /* Storyboard.storyboard */; };
 		7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621814BCEE6800F79B8A /* CarsViewController.m */; };
+		7B82621E14BCF23400F79B8A /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621D14BCF23400F79B8A /* Car.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		7B82621214BCE9D800F79B8A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		7B82621714BCEE6800F79B8A /* CarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarsViewController.h; sourceTree = "<group>"; };
 		7B82621814BCEE6800F79B8A /* CarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
+		7B82621C14BCF23400F79B8A /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		7B82621D14BCF23400F79B8A /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				4DFB85C914BBAB6A00771A80 /* ServiceLog.xcdatamodeld */,
+				7B82621C14BCF23400F79B8A /* Car.h */,
+				7B82621D14BCF23400F79B8A /* Car.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				4DFB85C814BBAB6A00771A80 /* AppDelegate.m in Sources */,
 				4DFB85CB14BBAB6A00771A80 /* ServiceLog.xcdatamodeld in Sources */,
 				7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */,
+				7B82621E14BCF23400F79B8A /* Car.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
