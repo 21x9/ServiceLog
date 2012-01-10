@@ -16,6 +16,7 @@
 		4DFB85C814BBAB6A00771A80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB85C714BBAB6A00771A80 /* AppDelegate.m */; };
 		4DFB85CB14BBAB6A00771A80 /* ServiceLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB85C914BBAB6A00771A80 /* ServiceLog.xcdatamodeld */; };
 		7B82621314BCE9D800F79B8A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B82621214BCE9D800F79B8A /* Storyboard.storyboard */; };
+		7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621814BCEE6800F79B8A /* CarsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		4DFB85C714BBAB6A00771A80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4DFB85CA14BBAB6A00771A80 /* ServiceLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ServiceLog.xcdatamodel; sourceTree = "<group>"; };
 		7B82621214BCE9D800F79B8A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		7B82621714BCEE6800F79B8A /* CarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarsViewController.h; sourceTree = "<group>"; };
+		7B82621814BCEE6800F79B8A /* CarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,10 +83,9 @@
 		4DFB85BD14BBAB6A00771A80 /* ServiceLog */ = {
 			isa = PBXGroup;
 			children = (
-				7B82621214BCE9D800F79B8A /* Storyboard.storyboard */,
-				4DFB85C614BBAB6A00771A80 /* AppDelegate.h */,
-				4DFB85C714BBAB6A00771A80 /* AppDelegate.m */,
-				4DFB85C914BBAB6A00771A80 /* ServiceLog.xcdatamodeld */,
+				7B82621614BCEE3700F79B8A /* Views */,
+				7B82621514BCEE3000F79B8A /* Models */,
+				7B82621414BCEE2600F79B8A /* Controllers */,
 				4DFB85BE14BBAB6A00771A80 /* Supporting Files */,
 			);
 			path = ServiceLog;
@@ -98,6 +100,33 @@
 				4DFB85C514BBAB6A00771A80 /* Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7B82621414BCEE2600F79B8A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4DFB85C614BBAB6A00771A80 /* AppDelegate.h */,
+				4DFB85C714BBAB6A00771A80 /* AppDelegate.m */,
+				7B82621714BCEE6800F79B8A /* CarsViewController.h */,
+				7B82621814BCEE6800F79B8A /* CarsViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7B82621514BCEE3000F79B8A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4DFB85C914BBAB6A00771A80 /* ServiceLog.xcdatamodeld */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7B82621614BCEE3700F79B8A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B82621214BCE9D800F79B8A /* Storyboard.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +195,7 @@
 				4DFB85C414BBAB6A00771A80 /* main.m in Sources */,
 				4DFB85C814BBAB6A00771A80 /* AppDelegate.m in Sources */,
 				4DFB85CB14BBAB6A00771A80 /* ServiceLog.xcdatamodeld in Sources */,
+				7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
