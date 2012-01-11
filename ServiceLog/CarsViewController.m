@@ -19,6 +19,9 @@
 // Interface Actions
 - (IBAction)toggleEditing:(id)sender;
 
+// NSManagedObjectContext Helper Methods
+- (void)saveContextIfNecessary;
+
 // Interface Helpers
 - (UIBarButtonItem *)leftBarButton;
 
@@ -82,13 +85,20 @@
     [self.tableView setEditing:!self.tableView.editing animated:YES];
     [self.navigationItem setLeftBarButtonItem:self.leftBarButton animated:YES];
     
-    if (!self.tableView.editing && self.managedObjectContext.hasChanges)
-    {
-        NSError *error = nil;
-        
-        if (![self.managedObjectContext save:&error])
-            NSLog(@"Could not save context. %@, %@", error, error.userInfo);
-    }
+    if (!self.tableView.editing)
+        [self saveContextIfNecessary];
+}
+
+#pragma mark - NSManagedObjectContext Helper Methods
+- (void)saveContextIfNecessary
+{
+    if (!self.managedObjectContext.hasChanges)
+        return;
+    
+    NSError *error = nil;
+    
+    if (![self.managedObjectContext save:&error])
+        NSLog(@"Could not save context. %@, %@", error, error.userInfo);
 }
 
 #pragma mark - UITableViewDataSource Methods
