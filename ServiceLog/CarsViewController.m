@@ -12,7 +12,17 @@
 @interface CarsViewController ()
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+// Interface Actions
+- (IBAction)toggleEditing:(id)sender;
+
+// Interface Helpers
+- (UIBarButtonItem *)leftBarButton;
+
+// Table View Helpers
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
@@ -22,9 +32,11 @@
 @implementation CarsViewController
 
 @synthesize managedObjectContext;
-@synthesize tableView;
 
 @synthesize fetchedResultsController;
+@synthesize editButton;
+@synthesize doneButton;
+@synthesize tableView;
 
 #pragma mark - Getters
 - (NSFetchedResultsController *)fetchedResultsController
@@ -49,8 +61,34 @@
 #pragma mark - View Lifecycle
 - (void)viewDidUnload
 {
+    self.editButton = nil;
+    self.doneButton = nil;
     self.tableView = nil;
     [super viewDidUnload];
+}
+
+#pragma mark - View Helpers
+- (UIBarButtonItem *)leftBarButton
+{
+    if (self.tableView.editing)
+        return self.doneButton;
+    
+    return self.editButton;
+}
+
+#pragma mark - Interface Actions
+- (IBAction)toggleEditing:(id)sender
+{
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    [self.navigationItem setLeftBarButtonItem:self.leftBarButton animated:YES];
+    
+    if (!self.tableView.editing && self.managedObjectContext.hasChanges)
+    {
+        NSError *error = nil;
+        
+        if (![self.managedObjectContext save:&error])
+            NSLog(@"Could not save context. %@, %@", error, error.userInfo);
+    }
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -77,6 +115,64 @@
     Car *car = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", car.make, car.model];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%i", [car.year integerValue]];
+}
+
+#pragma mark - UITableViewDelegate Methods
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleInsert)
+        return;
+    
+    Car *deletedCar = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.managedObjectContext deleteObject:deletedCar];
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate Methods
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{    
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{        
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] forRowAtIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
 }
 
 @end
