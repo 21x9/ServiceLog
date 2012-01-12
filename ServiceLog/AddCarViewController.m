@@ -16,7 +16,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *makeTextField;
 @property (strong, nonatomic) IBOutlet UITextField *modelTextField;
 @property (strong, nonatomic) IBOutlet YearCell *yearCell;
-@property (assign, nonatomic) NSInteger selectedRowInPicker;
 
 @property (strong, nonatomic) NSArray *listOfYears;
 
@@ -27,9 +26,6 @@
 - (void)refreshDoneButton;
 - (BOOL)doneButtonShouldBeEnabled;
 - (IBAction)textFieldValueChanged:(id)sender;
-- (void)editYear;
-- (void)refreshYearLabel;
-- (NSIndexPath *)indexPathForYearCell;
 
 - (IBAction)makeCellTapped:(UIGestureRecognizer *)gesture;
 - (IBAction)modelCellTapped:(UIGestureRecognizer *)gesture;
@@ -51,7 +47,6 @@
 @synthesize modelTextField;
 @synthesize yearCell;
 @synthesize listOfYears;
-@synthesize selectedRowInPicker;
 
 #pragma mark - Getters
 - (NSArray *)listOfYears
@@ -78,32 +73,9 @@
     [self configureYearCell];
     [self refreshDoneButton];
 }
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [self.makeTextField becomeFirstResponder];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    self.yearCell.pickerView.delegate = nil;
-}
-
-- (void)viewDidUnload
-{
-    self.doneButton = nil;
-    self.makeTextField = nil;
-    self.modelTextField = nil;
-    self.yearCell.pickerView.delegate = nil;
-    self.yearCell = nil;
-    [super viewDidUnload];
-}
-
-#pragma mark - UIViewController Overrides
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.listOfYears = nil;
 }
 
 #pragma mark - Interface Actions
@@ -134,7 +106,7 @@
 {
     BOOL shouldBeEnabled = NO;
     
-    if (self.makeTextField.text.length && self.modelTextField.text.length && self.selectedRowInPicker != NSNotFound)
+    if (self.makeTextField.text.length && self.modelTextField.text.length && ![self.yearCell.detailTextLabel.text isEqualToString:@"Select..."])
         shouldBeEnabled = YES;
     
     return shouldBeEnabled;
@@ -143,26 +115,6 @@
 - (IBAction)textFieldValueChanged:(id)sender
 {
     [self refreshDoneButton];
-}
-
-- (void)editYear
-{
-    [self.yearCell becomeFirstResponder];
-    [self refreshYearLabel];
-    [self refreshDoneButton];
-    
-    if (!self.yearCell.selected)
-        [self.tableView selectRowAtIndexPath:self.indexPathForYearCell animated:NO scrollPosition:UITableViewScrollPositionNone];
-}
-
-- (void)refreshYearLabel
-{
-    self.yearCell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [self.listOfYears objectAtIndex:self.selectedRowInPicker]];
-}
-
-- (NSIndexPath *)indexPathForYearCell
-{
-    return [self.tableView indexPathForCell:self.yearCell];
 }
 
 #pragma mark UIGestureRecognizer Methods
@@ -184,18 +136,16 @@
     car.model = self.modelTextField.text;
     car.year = [self.listOfYears objectAtIndex:[self.yearCell.pickerView selectedRowInComponent:0]];
     
-    __weak AddCarViewController *weakSelf = self;
-    
     [self.managedObjectContext performBlock:^{
         NSError *error = nil;
         
-        if (![weakSelf.managedObjectContext save:&error])
+        if (![self.managedObjectContext save:&error])
             NSLog(@"Could not save discardable context. %@, %@", error, error.userInfo);
         
-        [weakSelf.managedObjectContext.parentContext performBlock:^{
-            NSError *parentError = nil;
+        [self.managedObjectContext.parentContext performBlock:^{
+            NSError *error = nil;
             
-            if (![weakSelf.managedObjectContext.parentContext save:&parentError])
+            if (![self.managedObjectContext.parentContext save:&error])
                 NSLog(@"Could not save parent context. %@, %@", error, error.userInfo);
         }];
     }];
@@ -244,16 +194,18 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.selectedRowInPicker = row;
-    [self refreshYearLabel];
+    self.yearCell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%@", [self.listOfYears objectAtIndex:row]];
     [self refreshDoneButton];
 }
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath isEqual:self.indexPathForYearCell])
-        [self editYear];
+    if (indexPath.row == 2)
+    {
+        [self.yearCell becomeFirstResponder];
+        self.yearCell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [self.listOfYears objectAtIndex:0]];
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -262,7 +214,11 @@
     if (textField == self.makeTextField)
         [self.modelTextField becomeFirstResponder];
     else if (textField == self.modelTextField)
-        [self editYear];
+    {
+        [self.yearCell becomeFirstResponder];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        self.yearCell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [self.listOfYears objectAtIndex:0]];
+    }
     
     return YES;
 }
