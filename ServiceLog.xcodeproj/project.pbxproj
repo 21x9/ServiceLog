@@ -283,6 +283,7 @@
 				GCC_PREFIX_HEADER = ServiceLog/Prefix.pch;
 				INFOPLIST_FILE = ServiceLog/Info.plist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -294,6 +295,7 @@
 				GCC_PREFIX_HEADER = ServiceLog/Prefix.pch;
 				INFOPLIST_FILE = ServiceLog/Info.plist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
