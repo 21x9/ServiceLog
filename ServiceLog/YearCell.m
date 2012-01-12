@@ -34,12 +34,12 @@
 
 - (void)insertText:(NSString *)text
 {
-    //
+    return;
 }
 
 - (void)deleteBackward
 {
-    //
+    return;
 }
 
 #pragma mark - UIResponder Overrides
