@@ -101,13 +101,12 @@
         NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         moc.parentContext = self.managedObjectContext;
         acvc.managedObjectContext = moc;
-        
+                
         acvc.cancelBlock = ^{
             [self dismissViewControllerAnimated:YES completion:nil];
         };
         
         acvc.doneBlock = ^{
-            //[self saveContextIfNecessary];
             [self dismissViewControllerAnimated:YES completion:nil];
         };
     }
@@ -120,6 +119,7 @@
         return;
     
     NSError *error = nil;
+    
     if (![self.managedObjectContext save:&error])
         NSLog(@"Could not save context. %@, %@", error, error.userInfo);
 }

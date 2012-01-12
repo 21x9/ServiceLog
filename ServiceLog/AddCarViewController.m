@@ -78,6 +78,23 @@
     [self.makeTextField becomeFirstResponder];
 }
 
+- (void)viewDidUnload
+{
+    self.doneButton = nil;
+    self.makeTextField = nil;
+    self.modelTextField = nil;
+    self.yearCell.pickerView.delegate = nil;
+    self.yearCell = nil;
+    [super viewDidUnload];
+}
+
+#pragma mark - UIViewController Overrides
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.listOfYears = nil;
+}
+
 #pragma mark - Interface Actions
 - (IBAction)cancel:(id)sender
 {
@@ -136,16 +153,18 @@
     car.model = self.modelTextField.text;
     car.year = [self.listOfYears objectAtIndex:[self.yearCell.pickerView selectedRowInComponent:0]];
     
+    __weak AddCarViewController *weakSelf = self;
+    
     [self.managedObjectContext performBlock:^{
         NSError *error = nil;
         
-        if (![self.managedObjectContext save:&error])
+        if (![weakSelf.managedObjectContext save:&error])
             NSLog(@"Could not save discardable context. %@, %@", error, error.userInfo);
         
-        [self.managedObjectContext.parentContext performBlock:^{
-            NSError *error = nil;
+        [weakSelf.managedObjectContext.parentContext performBlock:^{
+            NSError *parentError = nil;
             
-            if (![self.managedObjectContext.parentContext save:&error])
+            if (![weakSelf.managedObjectContext.parentContext save:&parentError])
                 NSLog(@"Could not save parent context. %@, %@", error, error.userInfo);
         }];
     }];
