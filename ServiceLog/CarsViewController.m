@@ -107,7 +107,7 @@
         };
         
         acvc.doneBlock = ^{
-            [self saveContextIfNecessary];
+            //[self saveContextIfNecessary];
             [self dismissViewControllerAnimated:YES completion:nil];
         };
     }
@@ -115,12 +115,11 @@
 
 #pragma mark - NSManagedObjectContext Helper Methods
 - (void)saveContextIfNecessary
-{
+{   
     if (!self.managedObjectContext.hasChanges)
         return;
     
     NSError *error = nil;
-    
     if (![self.managedObjectContext save:&error])
         NSLog(@"Could not save context. %@, %@", error, error.userInfo);
 }

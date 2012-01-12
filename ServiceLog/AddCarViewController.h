@@ -11,7 +11,7 @@
 typedef void (^AddCarViewControllerCancelBlock)();
 typedef void (^AddCarViewControllerSaveBlock)();
 
-@interface AddCarViewController : UITableViewController
+@interface AddCarViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
