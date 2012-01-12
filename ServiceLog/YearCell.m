@@ -50,7 +50,7 @@
 - (BOOL)resignFirstResponder
 {
     self.selected = NO;
-    return YES;
+    return [super resignFirstResponder];
 }
 
 - (UIView *)inputView

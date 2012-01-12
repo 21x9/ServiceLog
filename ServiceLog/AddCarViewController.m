@@ -81,19 +81,16 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [self.makeTextField becomeFirstResponder];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    self.yearCell.pickerView.delegate = nil;
-}
-
 - (void)viewDidUnload
-{
+{    
     self.doneButton = nil;
     self.makeTextField = nil;
     self.modelTextField = nil;
+    self.yearCell.pickerView.dataSource = nil;
     self.yearCell.pickerView.delegate = nil;
     self.yearCell = nil;
     [super viewDidUnload];
