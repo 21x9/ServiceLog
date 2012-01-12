@@ -7,8 +7,13 @@
 //
 
 #import "AddCarViewController.h"
+#import "Car.h"
 
 @interface AddCarViewController ()
+
+@property (strong, nonatomic) IBOutlet UITextField *makeTextField;
+@property (strong, nonatomic) IBOutlet UITextField *modelTextField;
+@property (strong, nonatomic) IBOutlet UITextField *yearTextField;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
@@ -19,8 +24,19 @@
 
 @implementation AddCarViewController
 
+@synthesize managedObjectContext;
 @synthesize cancelBlock;
-@synthesize saveBlock;
+@synthesize doneBlock;
+
+@synthesize makeTextField;
+@synthesize modelTextField;
+@synthesize yearTextField;
+
+#pragma mark - View Lifecycle
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.makeTextField becomeFirstResponder];
+}
 
 - (IBAction)cancel:(id)sender
 {
@@ -29,7 +45,19 @@
 
 - (IBAction)done:(id)sender
 {
-    self.saveBlock();
+    Car *car = [NSEntityDescription insertNewObjectForEntityForName:@"Car" inManagedObjectContext:self.managedObjectContext];
+    car.make = self.makeTextField.text;
+    car.model = self.modelTextField.text;
+    car.year = [NSNumber numberWithInteger:[self.yearTextField.text integerValue]];
+    
+    [self.managedObjectContext performBlock:^{
+        NSError *error = nil;
+        
+        if (![self.managedObjectContext save:&error])
+            NSLog(@"Could not save discardable context. %@, %@", error, error.userInfo);
+    }];
+    
+    self.doneBlock();
 }
 
 @end

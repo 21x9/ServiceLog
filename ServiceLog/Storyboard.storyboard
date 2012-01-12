@@ -5,31 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
-        <scene sceneID="5h7-RV-Hle">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zd8-Nw-x0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="8lz-PI-amP" customClass="AddCarViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PfE-Go-GL3">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add Car" id="Jdx-N3-BzV">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tb9-PA-OLU">
-                            <connections>
-                                <action selector="cancel:" destination="8lz-PI-amP" id="eFP-Ci-aK7"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="vwh-dc-yd7">
-                            <connections>
-                                <action selector="done:" destination="8lz-PI-amP" id="1Wf-ms-kcB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="876" y="-618"/>
-        </scene>
         <scene sceneID="F9a-fN-RfM">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yzw-Vs-cFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -38,11 +13,126 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="8lz-PI-amP" kind="relationship" relationship="rootViewController" id="u2j-1G-3nk"/>
+                        <segue destination="ugF-i0-8Ud" kind="relationship" relationship="rootViewController" id="k0y-i9-PWL"/>
                     </connections>
                 </navigationController>
             </objects>
             <point key="canvasLocation" x="342" y="-619"/>
+        </scene>
+        <scene sceneID="BCi-uz-IwO">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NTj-9n-qD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="ugF-i0-8Ud" customClass="AddCarViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="HMQ-Cf-1LB">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="MFj-6m-bmp">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Z8G-Ts-qKU">
+                                        <rect key="frame" x="0.0" y="10" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Jeep" minimumFontSize="17" id="JXf-Ca-B4Y">
+                                                    <rect key="frame" x="99" y="6" width="194" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Make" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="0wg-kc-HFV">
+                                                    <rect key="frame" x="7" y="11" width="84" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3Wr-Ps-ODb">
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Liberty" minimumFontSize="17" id="Qm5-fQ-8zd">
+                                                    <rect key="frame" x="99" y="6" width="194" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Model" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="JV0-9M-QIM">
+                                                    <rect key="frame" x="7" y="11" width="84" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="KOE-8v-JeI">
+                                        <rect key="frame" x="0.0" y="99" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="2004" minimumFontSize="17" id="cFP-8n-aGS">
+                                                    <rect key="frame" x="99" y="6" width="194" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Year" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="yeF-dz-eGU">
+                                                    <rect key="frame" x="7" y="11" width="84" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="ugF-i0-8Ud" id="Up7-T7-kAC"/>
+                            <outlet property="delegate" destination="ugF-i0-8Ud" id="G6D-Cr-TB6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Car" id="7zG-ss-7ft">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Vbm-CO-reI">
+                            <connections>
+                                <action selector="cancel:" destination="ugF-i0-8Ud" id="dBq-fr-rbF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Ded-CJ-5jB">
+                            <connections>
+                                <action selector="done:" destination="ugF-i0-8Ud" id="m3p-20-Omv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="makeTextField" destination="JXf-Ca-B4Y" id="1eY-dT-pKr"/>
+                        <outlet property="modelTextField" destination="Qm5-fQ-8zd" id="AqX-CI-P2T"/>
+                        <outlet property="yearTextField" destination="cFP-8n-aGS" id="EGu-HB-tnO"/>
+                    </connections>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="828" y="-619"/>
         </scene>
         <scene sceneID="3XV-NR-Ezr">
             <objects>
@@ -136,11 +226,14 @@
         </scene>
     </scenes>
     <classes>
-        <class className="AddCarViewController" superclassName="UIViewController">
+        <class className="AddCarViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddCarViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="makeTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="modelTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="yearTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="CarsViewController" superclassName="UIViewController">

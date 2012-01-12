@@ -11,9 +11,11 @@
 typedef void (^AddCarViewControllerCancelBlock)();
 typedef void (^AddCarViewControllerSaveBlock)();
 
-@interface AddCarViewController : UIViewController
+@interface AddCarViewController : UITableViewController
+
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (copy, nonatomic) AddCarViewControllerCancelBlock cancelBlock;
-@property (copy, nonatomic) AddCarViewControllerSaveBlock saveBlock;
+@property (copy, nonatomic) AddCarViewControllerSaveBlock doneBlock;
 
 @end

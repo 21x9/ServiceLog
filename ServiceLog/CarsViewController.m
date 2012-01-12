@@ -95,11 +95,19 @@
 {
     if ([segue.identifier isEqualToString:@"AddCar"])
     {
-        AddCarViewController *acvc = (AddCarViewController *)[(UINavigationController *)segue.destinationViewController topViewController];
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        AddCarViewController *acvc = (AddCarViewController *)navController.topViewController;
+        
+        NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        moc.parentContext = self.managedObjectContext;
+        acvc.managedObjectContext = moc;
+        
         acvc.cancelBlock = ^{
             [self dismissViewControllerAnimated:YES completion:nil];
         };
-        acvc.saveBlock = ^{
+        
+        acvc.doneBlock = ^{
+            [self saveContextIfNecessary];
             [self dismissViewControllerAnimated:YES completion:nil];
         };
     }
