@@ -15,6 +15,7 @@
 		4DFB85C414BBAB6A00771A80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB85C314BBAB6A00771A80 /* main.m */; };
 		4DFB85C814BBAB6A00771A80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB85C714BBAB6A00771A80 /* AppDelegate.m */; };
 		4DFB85CB14BBAB6A00771A80 /* ServiceLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB85C914BBAB6A00771A80 /* ServiceLog.xcdatamodeld */; };
+		7B0C0D7114BE64FA000DDBC3 /* AddCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C0D7014BE64FA000DDBC3 /* AddCarViewController.m */; };
 		7B82621314BCE9D800F79B8A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B82621214BCE9D800F79B8A /* Storyboard.storyboard */; };
 		7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621814BCEE6800F79B8A /* CarsViewController.m */; };
 		7B82621E14BCF23400F79B8A /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621D14BCF23400F79B8A /* Car.m */; };
@@ -33,6 +34,8 @@
 		4DFB85C614BBAB6A00771A80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4DFB85C714BBAB6A00771A80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4DFB85CA14BBAB6A00771A80 /* ServiceLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ServiceLog.xcdatamodel; sourceTree = "<group>"; };
+		7B0C0D6F14BE64FA000DDBC3 /* AddCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCarViewController.h; sourceTree = "<group>"; };
+		7B0C0D7014BE64FA000DDBC3 /* AddCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCarViewController.m; sourceTree = "<group>"; };
 		7B82621214BCE9D800F79B8A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		7B82621714BCEE6800F79B8A /* CarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarsViewController.h; sourceTree = "<group>"; };
 		7B82621814BCEE6800F79B8A /* CarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 				4DFB85C714BBAB6A00771A80 /* AppDelegate.m */,
 				7B82621714BCEE6800F79B8A /* CarsViewController.h */,
 				7B82621814BCEE6800F79B8A /* CarsViewController.m */,
+				7B0C0D6F14BE64FA000DDBC3 /* AddCarViewController.h */,
+				7B0C0D7014BE64FA000DDBC3 /* AddCarViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				4DFB85CB14BBAB6A00771A80 /* ServiceLog.xcdatamodeld in Sources */,
 				7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */,
 				7B82621E14BCF23400F79B8A /* Car.m in Sources */,
+				7B0C0D7114BE64FA000DDBC3 /* AddCarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

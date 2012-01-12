@@ -8,6 +8,7 @@
 
 #import "CarsViewController.h"
 #import "Car.h"
+#import "AddCarViewController.h"
 
 @interface CarsViewController ()
 
@@ -22,10 +23,10 @@
 // NSManagedObjectContext Helper Methods
 - (void)saveContextIfNecessary;
 
-// Interface Helpers
+// Interface Helper Methods
 - (UIBarButtonItem *)leftBarButton;
 
-// Table View Helpers
+// Table View Helper Methods
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
@@ -87,6 +88,21 @@
     
     if (!self.tableView.editing)
         [self saveContextIfNecessary];
+}
+
+#pragma mark - UIViewController Overrides
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"AddCar"])
+    {
+        AddCarViewController *acvc = (AddCarViewController *)[(UINavigationController *)segue.destinationViewController topViewController];
+        acvc.cancelBlock = ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+        acvc.saveBlock = ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+    }
 }
 
 #pragma mark - NSManagedObjectContext Helper Methods

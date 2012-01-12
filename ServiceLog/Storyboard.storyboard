@@ -5,6 +5,45 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
+        <scene sceneID="5h7-RV-Hle">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zd8-Nw-x0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="8lz-PI-amP" customClass="AddCarViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PfE-Go-GL3">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Car" id="Jdx-N3-BzV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tb9-PA-OLU">
+                            <connections>
+                                <action selector="cancel:" destination="8lz-PI-amP" id="eFP-Ci-aK7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="vwh-dc-yd7">
+                            <connections>
+                                <action selector="done:" destination="8lz-PI-amP" id="1Wf-ms-kcB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="876" y="-618"/>
+        </scene>
+        <scene sceneID="F9a-fN-RfM">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yzw-Vs-cFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController definesPresentationContext="YES" id="KNd-Kj-Jnk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="aZu-s6-B8d">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8lz-PI-amP" kind="relationship" relationship="rootViewController" id="u2j-1G-3nk"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="342" y="-619"/>
+        </scene>
         <scene sceneID="3XV-NR-Ezr">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mos-cr-XUU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -65,6 +104,11 @@
                                 <action selector="toggleEditing:" destination="MOE-yX-6im" id="xna-81-GT1"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="chY-5t-A1z">
+                            <connections>
+                                <segue destination="KNd-Kj-Jnk" kind="modal" identifier="AddCar" id="oPl-th-nKK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -92,6 +136,13 @@
         </scene>
     </scenes>
     <classes>
+        <class className="AddCarViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddCarViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="done:"/>
+            </relationships>
+        </class>
         <class className="CarsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CarsViewController.h"/>
             <relationships>
