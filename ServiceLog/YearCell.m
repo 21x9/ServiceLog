@@ -20,7 +20,6 @@
         return nil;
     
     pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    [pickerView sizeThatFits:[UIScreen mainScreen].applicationFrame.size];
     pickerView.showsSelectionIndicator = YES;
     
     return self;
