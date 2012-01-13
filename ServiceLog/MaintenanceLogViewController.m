@@ -12,6 +12,8 @@
 @interface MaintenanceLogViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIImageView *vehicleImageView;
+@property (strong, nonatomic) IBOutlet UILabel *vehicleLabel;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
@@ -24,6 +26,8 @@
 @synthesize managedObjectContext;
 
 @synthesize tableView;
+@synthesize vehicleImageView;
+@synthesize vehicleLabel;
 @synthesize fetchedResultsController;
 
 #pragma mark - Getters
@@ -43,6 +47,16 @@
     }
     
     return fetchedResultsController;
+}
+
+#pragma mark - View Lifecycle
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.vehicleImageView.layer.cornerRadius = 4.0f;
+    self.vehicleImageView.layer.borderColor = [UIColor colorWithWhite:0.0f alpha:0.35f].CGColor;
+    self.vehicleImageView.layer.borderWidth = 1.0f;
+    self.vehicleImageView.layer.masksToBounds = YES;
 }
 
 #pragma mark - UITableViewDataSource Methods

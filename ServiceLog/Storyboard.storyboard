@@ -259,6 +259,21 @@
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="fpv-39-3Bk">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="2013-Ford-Escape-Front-Angle3-96x96.jpg" id="MWB-ub-whv">
+                                            <rect key="frame" x="10" y="10" width="68" height="68"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ford Escape" lineBreakMode="tailTruncation" minimumFontSize="10" id="qCN-6H-UEn">
+                                            <rect key="frame" x="86" y="33" width="214" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <size key="shadowOffset" width="0.0" height="1"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </view>
                                 <prototypes>
@@ -299,6 +314,8 @@
                     <navigationItem key="navigationItem" title="Log" id="I6f-Ds-oEs"/>
                     <connections>
                         <outlet property="tableView" destination="IlZ-CS-xGM" id="yje-I7-buV"/>
+                        <outlet property="vehicleImageView" destination="MWB-ub-whv" id="hfp-la-oGh"/>
+                        <outlet property="vehicleLabel" destination="qCN-6H-UEn" id="y3v-dX-VPZ"/>
                     </connections>
                 </viewController>
             </objects>
@@ -319,6 +336,9 @@
             <point key="canvasLocation" x="-81" y="11"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="2013-Ford-Escape-Front-Angle3-96x96.jpg" width="96" height="96"/>
+    </resources>
     <classes>
         <class className="AddCarViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddCarViewController.h"/>
@@ -347,6 +367,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MaintenanceLogViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="vehicleImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="vehicleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="YearCell" superclassName="UITableViewCell">
