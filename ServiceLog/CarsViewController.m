@@ -9,6 +9,7 @@
 #import "CarsViewController.h"
 #import "Car.h"
 #import "AddCarViewController.h"
+#import "MaintenanceLogViewController.h"
 
 @interface CarsViewController ()
 
@@ -63,6 +64,12 @@
 }
 
 #pragma mark - View Lifecycle
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+
 - (void)viewDidUnload
 {
     self.editButton = nil;
@@ -109,6 +116,11 @@
         acvc.doneBlock = ^{
             [self dismissViewControllerAnimated:YES completion:nil];
         };
+    }
+    else if ([segue.identifier isEqualToString:@"PushMaintenanceLog"])
+    {
+        MaintenanceLogViewController *mlvc = (MaintenanceLogViewController *)segue.destinationViewController;
+        mlvc.managedObjectContext = self.managedObjectContext;
     }
 }
 

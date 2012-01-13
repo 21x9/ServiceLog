@@ -20,6 +20,8 @@
 		7B82621314BCE9D800F79B8A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B82621214BCE9D800F79B8A /* Storyboard.storyboard */; };
 		7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621814BCEE6800F79B8A /* CarsViewController.m */; };
 		7B82621E14BCF23400F79B8A /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621D14BCF23400F79B8A /* Car.m */; };
+		7BA073C614C0E618005E85F3 /* MaintenanceLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA073C514C0E618005E85F3 /* MaintenanceLogViewController.m */; };
+		7BA073CA14C0F099005E85F3 /* Maintenance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA073C914C0F099005E85F3 /* Maintenance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,10 @@
 		7B82621814BCEE6800F79B8A /* CarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
 		7B82621C14BCF23400F79B8A /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
 		7B82621D14BCF23400F79B8A /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
+		7BA073C414C0E618005E85F3 /* MaintenanceLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceLogViewController.h; sourceTree = "<group>"; };
+		7BA073C514C0E618005E85F3 /* MaintenanceLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceLogViewController.m; sourceTree = "<group>"; };
+		7BA073C814C0F099005E85F3 /* Maintenance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maintenance.h; sourceTree = "<group>"; };
+		7BA073C914C0F099005E85F3 /* Maintenance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Maintenance.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,8 @@
 				7B82621814BCEE6800F79B8A /* CarsViewController.m */,
 				7B0C0D6F14BE64FA000DDBC3 /* AddCarViewController.h */,
 				7B0C0D7014BE64FA000DDBC3 /* AddCarViewController.m */,
+				7BA073C414C0E618005E85F3 /* MaintenanceLogViewController.h */,
+				7BA073C514C0E618005E85F3 /* MaintenanceLogViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -127,6 +135,8 @@
 		7B82621514BCEE3000F79B8A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7BA073C814C0F099005E85F3 /* Maintenance.h */,
+				7BA073C914C0F099005E85F3 /* Maintenance.m */,
 				4DFB85C914BBAB6A00771A80 /* ServiceLog.xcdatamodeld */,
 				7B82621C14BCF23400F79B8A /* Car.h */,
 				7B82621D14BCF23400F79B8A /* Car.m */,
@@ -214,6 +224,8 @@
 				7B82621E14BCF23400F79B8A /* Car.m in Sources */,
 				7B0C0D7114BE64FA000DDBC3 /* AddCarViewController.m in Sources */,
 				7B3AFB2B14BE988C00900284 /* YearCell.m in Sources */,
+				7BA073C614C0E618005E85F3 /* MaintenanceLogViewController.m in Sources */,
+				7BA073CA14C0F099005E85F3 /* Maintenance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
