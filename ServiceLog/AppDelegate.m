@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "CarsViewController.h"
 #import "Car.h"
+#import "Car+Helpers.h"
+#import "Maintenance.h"
+#import "Maintenance+Helpers.h"
 
 @implementation AppDelegate
 
@@ -22,20 +25,14 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"TestDataLoaded"])
     {
         // Test data
-        Car *car = [NSEntityDescription insertNewObjectForEntityForName:@"Car" inManagedObjectContext:self.managedObjectContext];
-        car.year = [NSNumber numberWithInteger:2006];
-        car.make = @"Mazda";
-        car.model = @"6";
+        Car *car = [Car carWithMake:@"Mazda" model:@"6" year:[NSNumber numberWithInteger:2006] managedObjectContext:self.managedObjectContext];
+        [car addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeOilFilter mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
         
-        Car *SUV = [NSEntityDescription insertNewObjectForEntityForName:@"Car" inManagedObjectContext:self.managedObjectContext];
-        SUV.year = [NSNumber numberWithInt:2004];
-        SUV.make = @"Ford";
-        SUV.model = @"Escape";
+        Car *SUV = [Car carWithMake:@"Ford" model:@"Escape" year:[NSNumber numberWithInteger:2004] managedObjectContext:self.managedObjectContext];
+        [SUV addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeAirFilter mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
         
-        Car *hatchback = [NSEntityDescription insertNewObjectForEntityForName:@"Car" inManagedObjectContext:self.managedObjectContext];
-        hatchback.year = [NSNumber numberWithInt:2006];
-        hatchback.make = @"Mazda";
-        hatchback.model = @"3";
+        Car *hatchback = [Car carWithMake:@"Mazda" model:@"3" year:[NSNumber numberWithInteger:2006] managedObjectContext:self.managedObjectContext];
+        [hatchback addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeRearBrakes mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
     
         [self.managedObjectContext save:nil];
         

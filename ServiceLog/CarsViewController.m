@@ -121,6 +121,7 @@
     {
         MaintenanceLogViewController *mlvc = (MaintenanceLogViewController *)segue.destinationViewController;
         mlvc.managedObjectContext = self.managedObjectContext;
+        mlvc.car = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
     }
 }
 
