@@ -10,16 +10,19 @@
 
 typedef enum
 {
-    MaintenanceTypeOilFilter = 0,
-    MaintenanceTypeAirFilter,
+    MaintenanceTypeAirFilter = 0,
+    MaintenanceTypeOilFilter,
     MaintenanceTypeTireRotation,
     MaintenanceTypeFrontBrakes,
-    MaintenanceTypeRearBrakes
+    MaintenanceTypeRearBrakes,
+    MaintenanceTypeNumberOfEvents
 } MaintenanceType;
 
 @interface Maintenance (Helpers)
 
 + (Maintenance *)maintenanceWithType:(MaintenanceType)type mileage:(NSNumber *)mileage datePerformed:(NSDate *)datePerformed managedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSString *)typeString;
+
++ (NSArray *)maintenanceTypes;
 
 @end

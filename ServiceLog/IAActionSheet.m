@@ -20,12 +20,35 @@
 
 @synthesize dismissalBlock;
 
-- (id)initWithTitle:(NSString *)title dismissalBlock:(IAActionSheetDismissalBlock)block
+- (id)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles dismissalBlock:(IAActionSheetDismissalBlock)block
 {
     self = [super initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     
     if (!self)
         return nil;
+    
+    if (destructiveButtonTitle)
+    {
+        [self addButtonWithTitle:destructiveButtonTitle];
+        self.destructiveButtonIndex = 0;
+    }
+    
+    if (otherButtonTitles)
+    {
+        for (NSString *title in otherButtonTitles)
+        {
+            if (![title isKindOfClass:[NSString class]])
+                continue;
+            
+            [self addButtonWithTitle:title];
+        }
+    }
+    
+    if (cancelButtonTitle)
+    {
+        [self addButtonWithTitle:cancelButtonTitle];
+        self.cancelButtonIndex = self.numberOfButtons - 1;
+    }
     
     dismissalBlock = block;
     

@@ -12,6 +12,6 @@ typedef void (^IAActionSheetDismissalBlock)(NSInteger buttonIndex);
 
 @interface IAActionSheet : UIActionSheet <UIActionSheetDelegate>
 
-- (id)initWithTitle:(NSString *)title dismissalBlock:(IAActionSheetDismissalBlock)block;
+- (id)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles dismissalBlock:(IAActionSheetDismissalBlock)block;
 
 @end

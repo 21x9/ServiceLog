@@ -79,17 +79,15 @@
 #pragma mark - Interface Actions
 - (IBAction)addMaintenanceEvent:(id)sender
 {
-    IAActionSheet *actionSheet = [[IAActionSheet alloc] initWithTitle:@"Select Maintenance Type" dismissalBlock:^(NSInteger tappedButtonIndex) {
+    IAActionSheet *actionSheet = [[IAActionSheet alloc] initWithTitle:@"Select Maintenance Type" cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:[Maintenance maintenanceTypes] dismissalBlock:^(NSInteger tappedButtonIndex) {
+        
+        if (tappedButtonIndex == actionSheet.cancelButtonIndex)
+            return;
+        
         //
+        
     }];
     
-    [actionSheet addButtonWithTitle:@"Oil Filter"];
-    [actionSheet addButtonWithTitle:@"Air Filter"];
-    [actionSheet addButtonWithTitle:@"Tire Rotation"];
-    [actionSheet addButtonWithTitle:@"Front Brakes"];
-    [actionSheet addButtonWithTitle:@"Rear Brakes"];
-    [actionSheet addButtonWithTitle:@"Cancel"];
-    actionSheet.cancelButtonIndex = 5;
     [actionSheet showInView:self.view];
 }
 

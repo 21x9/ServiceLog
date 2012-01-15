@@ -45,4 +45,35 @@
     }
 }
 
++ (NSArray *)maintenanceTypes
+{
+    NSMutableArray *types = [NSMutableArray array];
+    
+    for (MaintenanceType type = 0; type < MaintenanceTypeNumberOfEvents; type++)
+    {
+        switch (type)
+        {
+            case MaintenanceTypeAirFilter:
+                [types addObject:@"Air Filter"];
+                break;
+            case MaintenanceTypeOilFilter:
+                [types addObject:@"Oil Filter"];
+                break;
+            case MaintenanceTypeTireRotation:
+                [types addObject:@"Tire Rotation"];
+                break;
+            case MaintenanceTypeFrontBrakes:
+                [types addObject:@"Front Brakes"];
+                break;
+            case MaintenanceTypeRearBrakes:
+                [types addObject:@"Rear Brakes"];
+                break;
+            default:
+                break;
+        }
+    }
+    
+    return [types copy];
+}
+
 @end
