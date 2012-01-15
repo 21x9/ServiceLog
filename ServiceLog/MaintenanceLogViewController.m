@@ -11,6 +11,7 @@
 #import "Maintenance+Helpers.h"
 #import "Car.h"
 #import "Car+Helpers.h"
+#import "IAActionSheet.h"
 
 @interface MaintenanceLogViewController ()
 
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 - (void)setupTableHeader;
+- (IBAction)addMaintenanceEvent:(id)sender;
 
 @end
 
@@ -74,6 +76,23 @@
     self.vehicleImageView.layer.masksToBounds = YES;
 }
 
+#pragma mark - Interface Actions
+- (IBAction)addMaintenanceEvent:(id)sender
+{
+    IAActionSheet *actionSheet = [[IAActionSheet alloc] initWithTitle:@"Select Maintenance Type" dismissalBlock:^(NSInteger tappedButtonIndex) {
+        //
+    }];
+    
+    [actionSheet addButtonWithTitle:@"Oil Filter"];
+    [actionSheet addButtonWithTitle:@"Air Filter"];
+    [actionSheet addButtonWithTitle:@"Tire Rotation"];
+    [actionSheet addButtonWithTitle:@"Front Brakes"];
+    [actionSheet addButtonWithTitle:@"Rear Brakes"];
+    [actionSheet addButtonWithTitle:@"Cancel"];
+    actionSheet.cancelButtonIndex = 5;
+    [actionSheet showInView:self.view];
+}
+
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -89,7 +108,5 @@
     
     return cell;
 }
-
-#pragma mark - UITableViewDelegate Methods
 
 @end
