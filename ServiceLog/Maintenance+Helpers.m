@@ -45,35 +45,42 @@
     }
 }
 
+static NSArray *types = nil;
+
 + (NSArray *)maintenanceTypes
 {
-    NSMutableArray *types = [NSMutableArray array];
-    
-    for (MaintenanceType type = 0; type < MaintenanceTypeNumberOfEvents; type++)
+    if (!types)
     {
-        switch (type)
+        NSMutableArray *mutableTypes = [NSMutableArray array];
+        
+        for (MaintenanceType type = 0; type < MaintenanceTypeNumberOfEvents; type++)
         {
-            case MaintenanceTypeAirFilter:
-                [types addObject:@"Air Filter"];
-                break;
-            case MaintenanceTypeOilFilter:
-                [types addObject:@"Oil Filter"];
-                break;
-            case MaintenanceTypeTireRotation:
-                [types addObject:@"Tire Rotation"];
-                break;
-            case MaintenanceTypeFrontBrakes:
-                [types addObject:@"Front Brakes"];
-                break;
-            case MaintenanceTypeRearBrakes:
-                [types addObject:@"Rear Brakes"];
-                break;
-            default:
-                break;
+            switch (type)
+            {
+                case MaintenanceTypeAirFilter:
+                    [mutableTypes addObject:@"Air Filter"];
+                    break;
+                case MaintenanceTypeOilFilter:
+                    [mutableTypes addObject:@"Oil Filter"];
+                    break;
+                case MaintenanceTypeTireRotation:
+                    [mutableTypes addObject:@"Tire Rotation"];
+                    break;
+                case MaintenanceTypeFrontBrakes:
+                    [mutableTypes addObject:@"Front Brakes"];
+                    break;
+                case MaintenanceTypeRearBrakes:
+                    [mutableTypes addObject:@"Rear Brakes"];
+                    break;
+                default:
+                    break;
+            }
         }
+        
+        types = [mutableTypes copy];
     }
-    
-    return [types copy];
+        
+    return types;
 }
 
 @end
