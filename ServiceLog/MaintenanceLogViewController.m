@@ -12,6 +12,7 @@
 #import "Car.h"
 #import "Car+Helpers.h"
 #import "IAActionSheet.h"
+#import "AddMaintenanceEventViewController.h"
 
 @interface MaintenanceLogViewController ()
 
@@ -23,6 +24,7 @@
 
 - (void)setupTableHeader;
 - (IBAction)addMaintenanceEvent:(id)sender;
+- (void)presentAddMaintenanceEventViewControllerWithMaintenanceType:(MaintenanceType)type;
 
 @end
 
@@ -79,16 +81,38 @@
 #pragma mark - Interface Actions
 - (IBAction)addMaintenanceEvent:(id)sender
 {
-    IAActionSheet *actionSheet = [[IAActionSheet alloc] initWithTitle:@"Select Maintenance Type" cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:[Maintenance maintenanceTypes] dismissalBlock:^(NSInteger tappedButtonIndex) {
+    __block IAActionSheet *actionSheet = [[IAActionSheet alloc] initWithTitle:@"Select Maintenance Type" cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:[Maintenance maintenanceTypes] dismissalBlock:^(NSInteger tappedButtonIndex) {
         
         if (tappedButtonIndex == actionSheet.cancelButtonIndex)
             return;
         
-        //
         
+        [self presentAddMaintenanceEventViewControllerWithMaintenanceType:tappedButtonIndex];
     }];
     
     [actionSheet showInView:self.view];
+}
+
+- (void)presentAddMaintenanceEventViewControllerWithMaintenanceType:(MaintenanceType)type
+{
+    AddMaintenanceEventViewController *amevc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddMaintenanceEventViewController"];
+    amevc.maintenanceType = type;
+    
+    __weak AddMaintenanceEventViewController *weakController = amevc;
+    
+    amevc.completionBlock = ^(BOOL saved) {
+        [weakController willMoveToParentViewController:nil];
+        [weakController viewWillDisappear:YES];
+        [weakController.view removeFromSuperview];
+        [weakController viewDidDisappear:YES];
+        [weakController removeFromParentViewController];
+    };
+    
+    [self.navigationController addChildViewController:amevc];
+    [amevc viewWillAppear:YES];
+    [self.navigationController.view addSubview:amevc.view];
+    [amevc viewDidAppear:YES];
+    [amevc didMoveToParentViewController:self.navigationController];
 }
 
 #pragma mark - UITableViewDataSource Methods
