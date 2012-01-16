@@ -25,6 +25,7 @@
 - (void)setupTableHeader;
 - (IBAction)addMaintenanceEvent:(id)sender;
 - (void)presentAddMaintenanceEventViewControllerWithMaintenanceType:(MaintenanceType)type;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -96,7 +97,9 @@
 - (void)presentAddMaintenanceEventViewControllerWithMaintenanceType:(MaintenanceType)type
 {
     AddMaintenanceEventViewController *amevc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddMaintenanceEventViewController"];
+    amevc.car = self.car;
     amevc.maintenanceType = type;
+    amevc.managedObjectContext = self.managedObjectContext;
     
     __weak AddMaintenanceEventViewController *weakController = amevc;
     
@@ -123,12 +126,71 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Maintenance *maintenanceEvent = [self.fetchedResultsController objectAtIndexPath:indexPath];
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MaintenanceCell"];
-    cell.textLabel.text = maintenanceEvent.typeString;
-    cell.detailTextLabel.text = maintenanceEvent.datePerformed.description;
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+#pragma mark UITableViewDataSource Helper Methods
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    Maintenance *maintenance = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = maintenance.typeString;
+    cell.detailTextLabel.text = maintenance.datePerformed.description;
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate Methods
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{    
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{        
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
+                    atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
 }
 
 @end

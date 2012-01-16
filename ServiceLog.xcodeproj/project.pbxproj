@@ -24,6 +24,7 @@
 		7B82621314BCE9D800F79B8A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B82621214BCE9D800F79B8A /* Storyboard.storyboard */; };
 		7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621814BCEE6800F79B8A /* CarsViewController.m */; };
 		7B85B9CF14C36B12009AAB39 /* AddMaintenanceEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B85B9CE14C36B12009AAB39 /* AddMaintenanceEventViewController.m */; };
+		7B85B9D314C3A90C009AAB39 /* IAEditableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B85B9D214C3A90C009AAB39 /* IAEditableLabel.m */; };
 		7BA073C614C0E618005E85F3 /* MaintenanceLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA073C514C0E618005E85F3 /* MaintenanceLogViewController.m */; };
 		7BA073CD14C0F7E9005E85F3 /* 2013-Ford-Escape-Front-Angle3-96x96.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7BA073CC14C0F7E9005E85F3 /* 2013-Ford-Escape-Front-Angle3-96x96.jpg */; };
 		7BA073CF14C0F816005E85F3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BA073CE14C0F816005E85F3 /* QuartzCore.framework */; };
@@ -60,6 +61,8 @@
 		7B82621814BCEE6800F79B8A /* CarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
 		7B85B9CD14C36B12009AAB39 /* AddMaintenanceEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMaintenanceEventViewController.h; sourceTree = "<group>"; };
 		7B85B9CE14C36B12009AAB39 /* AddMaintenanceEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMaintenanceEventViewController.m; sourceTree = "<group>"; };
+		7B85B9D114C3A90C009AAB39 /* IAEditableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAEditableLabel.h; sourceTree = "<group>"; };
+		7B85B9D214C3A90C009AAB39 /* IAEditableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAEditableLabel.m; sourceTree = "<group>"; };
 		7BA073C414C0E618005E85F3 /* MaintenanceLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceLogViewController.h; sourceTree = "<group>"; };
 		7BA073C514C0E618005E85F3 /* MaintenanceLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceLogViewController.m; sourceTree = "<group>"; };
 		7BA073CC14C0F7E9005E85F3 /* 2013-Ford-Escape-Front-Angle3-96x96.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2013-Ford-Escape-Front-Angle3-96x96.jpg"; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				7B3AFB2A14BE988C00900284 /* YearCell.m */,
 				7BD5E6AA14C280770002D6ED /* IAActionSheet.h */,
 				7BD5E6AB14C280770002D6ED /* IAActionSheet.m */,
+				7B85B9D114C3A90C009AAB39 /* IAEditableLabel.h */,
+				7B85B9D214C3A90C009AAB39 /* IAEditableLabel.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				7B393C5914C232E10007523E /* Car.m in Sources */,
 				7BD5E6AC14C280770002D6ED /* IAActionSheet.m in Sources */,
 				7B85B9CF14C36B12009AAB39 /* AddMaintenanceEventViewController.m in Sources */,
+				7B85B9D314C3A90C009AAB39 /* IAEditableLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
