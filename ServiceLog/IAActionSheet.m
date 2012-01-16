@@ -47,7 +47,7 @@
     if (cancelButtonTitle)
     {
         [self addButtonWithTitle:cancelButtonTitle];
-        self.cancelButtonIndex = self.numberOfButtons - 1;
+        self.cancelButtonIndex = otherButtonTitles.count;
     }
     
     dismissalBlock = block;
