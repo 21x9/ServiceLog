@@ -181,21 +181,10 @@
     car.model = self.modelTextField.text;
     car.year = [self.listOfYears objectAtIndex:[self.yearCell.pickerView selectedRowInComponent:0]];
     
-    __weak AddCarViewController *weakSelf = self;
+    NSError *error = nil;
     
-    [self.managedObjectContext performBlock:^{
-        NSError *error = nil;
-        
-        if (![weakSelf.managedObjectContext save:&error])
-            NSLog(@"Could not save discardable context. %@, %@", error, error.userInfo);
-        
-        [weakSelf.managedObjectContext.parentContext performBlock:^{
-            NSError *parentError = nil;
-            
-            if (![weakSelf.managedObjectContext.parentContext save:&parentError])
-                NSLog(@"Could not save parent context. %@, %@", error, error.userInfo);
-        }];
-    }];
+    if (![self.managedObjectContext save:&error])
+        NSLog(@"Couldn't save context. %@, %@", error, error.userInfo);
 }
 
 #pragma mark - UIPickerViewDataSource Methods
