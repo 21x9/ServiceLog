@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *vehicleLabel;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 - (void)setupTableHeader;
 - (IBAction)addMaintenanceEvent:(id)sender;
@@ -40,6 +41,7 @@
 @synthesize vehicleImageView;
 @synthesize vehicleLabel;
 @synthesize fetchedResultsController;
+@synthesize dateFormatter;
 
 #pragma mark - Getters
 - (NSFetchedResultsController *)fetchedResultsController
@@ -59,6 +61,18 @@
     }
     
     return fetchedResultsController;
+}
+
+- (NSDateFormatter *)dateFormatter
+{
+    if (!dateFormatter)
+    {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+        dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    }
+    
+    return dateFormatter;
 }
 
 #pragma mark - View Lifecycle
@@ -137,7 +151,7 @@
 {
     Maintenance *maintenance = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = maintenance.typeString;
-    cell.detailTextLabel.text = maintenance.datePerformed.description;
+    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:maintenance.datePerformed];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate Methods
