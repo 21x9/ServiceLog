@@ -26,6 +26,8 @@
 - (void)setupTableHeader;
 - (IBAction)addMaintenanceEvent:(id)sender;
 - (void)presentAddMaintenanceEventViewControllerWithMaintenanceType:(MaintenanceType)type;
+- (void)showAddMaintenanceEventViewController:(AddMaintenanceEventViewController *)controller;
+- (void)hideAddMaintenanceEventViewController;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
@@ -114,22 +116,33 @@
     amevc.car = self.car;
     amevc.maintenanceType = type;
     amevc.managedObjectContext = self.managedObjectContext;
-    
-    __weak AddMaintenanceEventViewController *weakController = amevc;
-    
     amevc.completionBlock = ^(BOOL saved) {
-        [weakController willMoveToParentViewController:nil];
-        [weakController viewWillDisappear:YES];
-        [weakController.view removeFromSuperview];
-        [weakController viewDidDisappear:YES];
-        [weakController removeFromParentViewController];
+        [self hideAddMaintenanceEventViewController];
     };
     
-    [self.navigationController addChildViewController:amevc];
-    [amevc viewWillAppear:YES];
-    [self.navigationController.view addSubview:amevc.view];
-    [amevc viewDidAppear:YES];
-    [amevc didMoveToParentViewController:self.navigationController];
+    [self showAddMaintenanceEventViewController:amevc];
+}
+
+- (void)showAddMaintenanceEventViewController:(AddMaintenanceEventViewController *)controller
+{
+    [self.navigationController addChildViewController:controller];
+    [controller viewWillAppear:YES];
+    [self.navigationController.view addSubview:controller.view];
+    [controller viewDidAppear:YES];
+    [controller didMoveToParentViewController:self.navigationController];
+}
+
+- (void)hideAddMaintenanceEventViewController
+{
+    if (!self.navigationController.childViewControllers.count)
+        return;
+    
+    UIViewController *controller = [self.navigationController.childViewControllers objectAtIndex:0];
+    [controller willMoveToParentViewController:nil];
+    [controller viewWillDisappear:YES];
+    [controller.view removeFromSuperview];
+    [controller viewDidDisappear:YES];
+    [controller removeFromParentViewController];
 }
 
 #pragma mark - UITableViewDataSource Methods
