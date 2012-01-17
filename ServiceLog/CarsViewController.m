@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) BOOL shouldPresentAddCarViewController;
 
 // Interface Actions
 - (IBAction)toggleEditing:(id)sender;
@@ -42,6 +43,7 @@
 @synthesize editButton;
 @synthesize doneButton;
 @synthesize tableView;
+@synthesize shouldPresentAddCarViewController;
 
 #pragma mark - Getters
 - (NSFetchedResultsController *)fetchedResultsController
@@ -64,10 +66,29 @@
 }
 
 #pragma mark - View Lifecycle
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    if (!self.fetchedResultsController.fetchedObjects.count)
+        self.shouldPresentAddCarViewController = YES;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.shouldPresentAddCarViewController)
+    {
+        self.shouldPresentAddCarViewController = NO;
+        [self performSegueWithIdentifier:@"AddCar" sender:self];
+    }
 }
 
 - (void)viewDidUnload
@@ -104,10 +125,7 @@
     {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         AddCarViewController *acvc = (AddCarViewController *)navController.topViewController;
-        
-        NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        moc.parentContext = self.managedObjectContext;
-        acvc.managedObjectContext = moc;
+        acvc.managedObjectContext = self.managedObjectContext;
                 
         acvc.cancelBlock = ^{
             [self dismissViewControllerAnimated:YES completion:nil];

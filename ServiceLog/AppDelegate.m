@@ -22,24 +22,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"TestDataLoaded"])
-    {
-        // Test data
-        Car *car = [Car carWithMake:@"Mazda" model:@"6" year:[NSNumber numberWithInteger:2006] managedObjectContext:self.managedObjectContext];
-        [car addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeOilFilter mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
-        
-        Car *SUV = [Car carWithMake:@"Ford" model:@"Escape" year:[NSNumber numberWithInteger:2004] managedObjectContext:self.managedObjectContext];
-        [SUV addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeAirFilter mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
-        
-        Car *hatchback = [Car carWithMake:@"Mazda" model:@"3" year:[NSNumber numberWithInteger:2006] managedObjectContext:self.managedObjectContext];
-        [hatchback addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeRearBrakes mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
-    
-        [self.managedObjectContext save:nil];
-        
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TestDataLoaded"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"TestDataLoaded"])
+//    {
+//        // Test data
+//        Car *car = [Car carWithMake:@"Mazda" model:@"6" year:[NSNumber numberWithInteger:2006] managedObjectContext:self.managedObjectContext];
+//        [car addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeOilFilter mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
+//        
+//        Car *SUV = [Car carWithMake:@"Ford" model:@"Escape" year:[NSNumber numberWithInteger:2004] managedObjectContext:self.managedObjectContext];
+//        [SUV addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeAirFilter mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
+//        
+//        Car *hatchback = [Car carWithMake:@"Mazda" model:@"3" year:[NSNumber numberWithInteger:2006] managedObjectContext:self.managedObjectContext];
+//        [hatchback addMaintenanceEventsObject:[Maintenance maintenanceWithType:MaintenanceTypeRearBrakes mileage:[NSNumber numberWithInteger:100000] datePerformed:[NSDate date] managedObjectContext:self.managedObjectContext]];
+//    
+//        [self.managedObjectContext save:nil];
+//        
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TestDataLoaded"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//    }
     
     CarsViewController *cvc = (CarsViewController *)[(UINavigationController *)self.window.rootViewController topViewController];
     cvc.managedObjectContext = self.managedObjectContext;
