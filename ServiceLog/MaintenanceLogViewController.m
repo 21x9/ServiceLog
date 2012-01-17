@@ -54,7 +54,7 @@
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"car == %@", self.car];
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"datePerformed" ascending:NO];
         fetchRequest.sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"sectionIdentifier" cacheName:nil];
         fetchedResultsController.delegate = self;
         NSError *error = nil;
         
@@ -102,7 +102,6 @@
         
         if (tappedButtonIndex == actionSheet.cancelButtonIndex)
             return;
-        
         
         [self presentAddMaintenanceEventViewControllerWithMaintenanceType:tappedButtonIndex];
     }];
@@ -157,6 +156,18 @@
     [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSInteger identifier = [[[self.fetchedResultsController.sections objectAtIndex:section] name] integerValue];
+    NSInteger year = identifier / 1000;
+    NSInteger month = identifier - (year * 1000);
+    NSString *monthName = [[self.dateFormatter monthSymbols] objectAtIndex:month - 1];
+    
+    return [NSString stringWithFormat:@"%@ %d", monthName, year];
+    
+    return @"";
 }
 
 #pragma mark UITableViewDataSource Helper Methods

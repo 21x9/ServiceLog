@@ -9,11 +9,12 @@
     <entity name="Maintenance" representedClassName="Maintenance" syncable="YES">
         <attribute name="datePerformed" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="mileage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="sectionIdentifier" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="-1" syncable="YES"/>
         <relationship name="car" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Car" inverseName="maintenanceEvents" inverseEntity="Car" syncable="YES"/>
     </entity>
     <elements>
         <element name="Car" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Maintenance" positionX="261" positionY="-270" width="128" height="90"/>
+        <element name="Maintenance" positionX="261" positionY="-270" width="128" height="120"/>
     </elements>
 </model>
