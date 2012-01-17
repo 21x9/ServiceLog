@@ -14,6 +14,6 @@
     </entity>
     <elements>
         <element name="Car" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Maintenance" positionX="286" positionY="99" width="128" height="90"/>
+        <element name="Maintenance" positionX="261" positionY="-270" width="128" height="90"/>
     </elements>
 </model>
