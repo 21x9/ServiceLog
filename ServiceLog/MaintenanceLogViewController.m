@@ -27,7 +27,6 @@
 - (IBAction)addMaintenanceEvent:(id)sender;
 - (void)presentAddMaintenanceEventViewControllerWithMaintenanceType:(MaintenanceType)type;
 - (void)showAddMaintenanceEventViewController:(AddMaintenanceEventViewController *)controller;
-- (void)hideAddMaintenanceEventViewController;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
@@ -84,6 +83,12 @@
     [self setupTableHeader];
 }
 
+- (void)viewDidUnload
+{
+    self.fetchedResultsController = nil;
+    [super viewDidUnload];
+}
+
 #pragma mark - View Helpers
 - (void)setupTableHeader
 {
@@ -110,13 +115,20 @@
 }
 
 - (void)presentAddMaintenanceEventViewControllerWithMaintenanceType:(MaintenanceType)type
-{
+{    
     AddMaintenanceEventViewController *amevc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddMaintenanceEventViewController"];
     amevc.car = self.car;
     amevc.maintenanceType = type;
     amevc.managedObjectContext = self.managedObjectContext;
+    
+    __weak AddMaintenanceEventViewController *weakController = amevc;
+    
     amevc.completionBlock = ^(BOOL saved) {
-        [self hideAddMaintenanceEventViewController];
+        [weakController willMoveToParentViewController:nil];
+        [weakController viewWillDisappear:YES];
+        [weakController.view removeFromSuperview];
+        [weakController viewDidDisappear:YES];
+        [weakController removeFromParentViewController];
     };
     
     [self showAddMaintenanceEventViewController:amevc];
@@ -131,20 +143,12 @@
     [controller didMoveToParentViewController:self.navigationController];
 }
 
-- (void)hideAddMaintenanceEventViewController
+#pragma mark - UITableViewDataSource Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (!self.navigationController.childViewControllers.count)
-        return;
-    
-    UIViewController *controller = [self.navigationController.childViewControllers objectAtIndex:0];
-    [controller willMoveToParentViewController:nil];
-    [controller viewWillDisappear:YES];
-    [controller.view removeFromSuperview];
-    [controller viewDidDisappear:YES];
-    [controller removeFromParentViewController];
+    return self.fetchedResultsController.sections.count;
 }
 
-#pragma mark - UITableViewDataSource Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[self.fetchedResultsController.sections objectAtIndex:section] numberOfObjects];
@@ -203,25 +207,20 @@
     switch(type)
     {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
-                    atIndexPath:indexPath];
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
