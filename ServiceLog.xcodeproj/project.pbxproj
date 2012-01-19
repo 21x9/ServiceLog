@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D644D3714C79756005A9D9C /* CarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644D3614C79756005A9D9C /* CarDetailViewController.m */; };
 		4D6A892514C62326007D6E27 /* Maintenance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A892414C62326007D6E27 /* Maintenance.m */; };
 		4DFB85B614BBAB6A00771A80 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFB85B514BBAB6A00771A80 /* UIKit.framework */; };
 		4DFB85B814BBAB6A00771A80 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFB85B714BBAB6A00771A80 /* Foundation.framework */; };
@@ -32,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D644D3514C79756005A9D9C /* CarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDetailViewController.h; sourceTree = "<group>"; };
+		4D644D3614C79756005A9D9C /* CarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDetailViewController.m; sourceTree = "<group>"; };
 		4D6A892314C62326007D6E27 /* Maintenance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maintenance.h; sourceTree = "<group>"; };
 		4D6A892414C62326007D6E27 /* Maintenance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Maintenance.m; sourceTree = "<group>"; };
 		4DFB85B114BBAB6A00771A80 /* ServiceLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServiceLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +155,8 @@
 				7BA073C514C0E618005E85F3 /* MaintenanceLogViewController.m */,
 				7B85B9CD14C36B12009AAB39 /* AddMaintenanceEventViewController.h */,
 				7B85B9CE14C36B12009AAB39 /* AddMaintenanceEventViewController.m */,
+				4D644D3514C79756005A9D9C /* CarDetailViewController.h */,
+				4D644D3614C79756005A9D9C /* CarDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				7B85B9CF14C36B12009AAB39 /* AddMaintenanceEventViewController.m in Sources */,
 				7B85B9D314C3A90C009AAB39 /* IAEditableLabel.m in Sources */,
 				4D6A892514C62326007D6E27 /* Maintenance.m in Sources */,
+				4D644D3714C79756005A9D9C /* CarDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
