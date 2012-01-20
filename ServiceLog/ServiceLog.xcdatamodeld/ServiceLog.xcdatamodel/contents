@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="878" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Car" representedClassName="Car" syncable="YES">
+        <attribute name="fullImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="make" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="model" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="maintenanceEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Maintenance" inverseName="car" inverseEntity="Maintenance" syncable="YES"/>
     </entity>
@@ -14,7 +16,7 @@
         <relationship name="car" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Car" inverseName="maintenanceEvents" inverseEntity="Car" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Car" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Car" positionX="-20" positionY="-216" width="128" height="135"/>
         <element name="Maintenance" positionX="261" positionY="-270" width="128" height="120"/>
     </elements>
 </model>

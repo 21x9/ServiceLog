@@ -13,6 +13,7 @@
 #import "Car+Helpers.h"
 #import "IAActionSheet.h"
 #import "AddMaintenanceEventViewController.h"
+#import "CarDetailViewController.h"
 
 @interface MaintenanceLogViewController ()
 
@@ -89,9 +90,20 @@
     [super viewDidUnload];
 }
 
+#pragma mark - UIViewController Overrides
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowCarDetails"])
+    {
+        CarDetailViewController *cdvc = segue.destinationViewController;
+        cdvc.car = self.car;
+    }
+}
+
 #pragma mark - View Helpers
 - (void)setupTableHeader
 {
+    self.vehicleImageView.image = [UIImage imageWithData:self.car.thumbnail];
     self.vehicleLabel.text = self.car.makeAndModel;
     
     self.vehicleImageView.layer.cornerRadius = 4.0f;

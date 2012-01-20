@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CarDetailViewController : UITableViewController
+@class Car;
+
+@interface CarDetailViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@property (strong, nonatomic) Car *car;
 
 @end

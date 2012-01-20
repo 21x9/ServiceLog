@@ -314,6 +314,50 @@
             </objects>
             <point key="canvasLocation" x="764" y="-619"/>
         </scene>
+        <scene sceneID="RvD-zv-AXE">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QSK-ZD-rEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="DNp-4c-hpF" customClass="PhotoViewerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hb9-iz-bfz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" id="mvf-a0-3Wx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="wLJ-eX-Dvs">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DNp-4c-hpF" id="xUF-aA-ezX"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ga9-uS-BJp" appends="YES" id="2uN-xY-4hc"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="d1T-Du-s8b"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="imageView" destination="wLJ-eX-Dvs" id="Blw-ef-2KL"/>
+                        <outlet property="scrollView" destination="mvf-a0-3Wx" id="0tI-I5-ZcT"/>
+                    </connections>
+                </viewController>
+                <tapGestureRecognizer id="ga9-uS-BJp">
+                    <connections>
+                        <action selector="showBars" destination="DNp-4c-hpF" id="KRd-gh-VVg"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1642" y="11"/>
+        </scene>
         <scene sceneID="Orh-wS-Tkb">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56X-IC-FTP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -401,7 +445,7 @@
                 </viewController>
                 <tapGestureRecognizer id="ins-bR-MKk">
                     <connections>
-                        <segue destination="pYi-O8-zS0" kind="push" id="Z1h-el-Enk"/>
+                        <segue destination="pYi-O8-zS0" kind="push" identifier="ShowCarDetails" id="Z1h-el-Enk"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -412,7 +456,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pA-5p-pnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="pYi-O8-zS0" customClass="CarDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="sQG-x2-9mS">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <inset key="contentInset" minX="0.0" minY="-200" maxX="0.0" maxY="0.0"/>
@@ -429,7 +473,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <gestureRecognizers/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" id="xgK-Ka-bbM">
+                                        <view alpha="0.0" contentMode="scaleToFill" id="xgK-Ka-bbM">
                                             <rect key="frame" x="0.0" y="48" width="68" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
@@ -445,6 +489,10 @@
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="xQD-E9-iFT" appends="YES" id="Bvs-nS-mzX"/>
+                                    </connections>
                                 </view>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="gsR-H4-rpc">
                                     <rect key="frame" x="86" y="233" width="214" height="21"/>
@@ -475,10 +523,16 @@
                         <outlet property="vehicleImageView" destination="HzS-vJ-EEe" id="yFS-Tf-Sqw"/>
                         <outlet property="vehicleLabel" destination="gsR-H4-rpc" id="5Mq-7G-uNe"/>
                         <outlet property="vehicleView" destination="UDh-ze-PvS" id="6fG-Hw-Jxy"/>
+                        <segue destination="DNp-4c-hpF" kind="push" identifier="ShowVehiclePhoto" id="NTa-lO-HAy"/>
                     </connections>
                 </tableViewController>
+                <tapGestureRecognizer id="xQD-E9-iFT">
+                    <connections>
+                        <action selector="imageViewTapped:" destination="pYi-O8-zS0" id="Vbf-gf-apX"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1197" y="11"/>
+            <point key="canvasLocation" x="1204" y="21"/>
         </scene>
         <scene sceneID="YcW-20-Xku">
             <objects>
@@ -527,6 +581,7 @@
         <class className="CarDetailViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CarDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="imageViewTapped:"/>
                 <relationship kind="outlet" name="editPhotoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="vehicleImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="vehicleLabel" candidateClass="UILabel"/>
@@ -552,6 +607,14 @@
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="vehicleImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="vehicleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PhotoViewerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showBars"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="YearCell" superclassName="UITableViewCell">
