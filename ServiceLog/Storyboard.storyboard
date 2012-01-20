@@ -317,7 +317,7 @@
         <scene sceneID="RvD-zv-AXE">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSK-ZD-rEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="DNp-4c-hpF" customClass="PhotoViewerViewController" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" id="DNp-4c-hpF" customClass="PhotoViewerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hb9-iz-bfz">
                         <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -326,7 +326,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="wLJ-eX-Dvs">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="wLJ-eX-Dvs">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
@@ -343,7 +343,7 @@
                             <outletCollection property="gestureRecognizers" destination="ga9-uS-BJp" appends="YES" id="2uN-xY-4hc"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="d1T-Du-s8b"/>
+                    <navigationItem key="navigationItem" title="Photo" id="d1T-Du-s8b"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="imageView" destination="wLJ-eX-Dvs" id="Blw-ef-2KL"/>
