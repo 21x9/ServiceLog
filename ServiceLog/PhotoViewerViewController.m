@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic) BOOL barsAreHidden;
+@property (strong, nonatomic) NSTimer *barHideTimer;
 
 - (void)hideBars;
 - (IBAction)showBars;
@@ -28,6 +29,7 @@
 @synthesize scrollView;
 @synthesize imageView;
 @synthesize barsAreHidden;
+@synthesize barHideTimer;
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
@@ -49,7 +51,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideBars) userInfo:nil repeats:NO];
+    self.barHideTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideBars) userInfo:nil repeats:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -57,11 +59,11 @@
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    [self.barHideTimer invalidate];
     
     if (self.barsAreHidden)
     {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+        [self showBars];
     }
 }
 
@@ -74,6 +76,9 @@
 #pragma mark - UI Wrangling
 - (void)hideBars
 {
+    if (!self.view.window)
+        return;
+    
     if (self.barsAreHidden)
         return;
     

@@ -319,10 +319,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSK-ZD-rEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="DNp-4c-hpF" customClass="PhotoViewerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hb9-iz-bfz">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" id="mvf-a0-3Wx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" id="mvf-a0-3Wx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
