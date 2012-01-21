@@ -13,10 +13,11 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic) BOOL barsAreHidden;
-@property (strong, nonatomic) NSTimer *barHideTimer;
+@property (strong, nonatomic) NSTimer *barVisibilityTimer;
 
 - (void)hideBars;
-- (IBAction)showBars;
+- (void)showBars;
+- (void)startTimer;
 
 @end
 
@@ -29,7 +30,7 @@
 @synthesize scrollView;
 @synthesize imageView;
 @synthesize barsAreHidden;
-@synthesize barHideTimer;
+@synthesize barVisibilityTimer;
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
@@ -44,65 +45,84 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.barHideTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideBars) userInfo:nil repeats:NO];
+    [self startTimer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.barVisibilityTimer invalidate];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.barHideTimer invalidate];
-    
-    if (self.barsAreHidden)
-    {
-        [self showBars];
-    }
 }
 
 #pragma mark - UIViewController Overrides
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return YES;
+    return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (self.barsAreHidden)
+        [UIApplication sharedApplication].statusBarHidden = NO;
+    
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (self.barsAreHidden)
+        [UIApplication sharedApplication].statusBarHidden = YES;
+    
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 #pragma mark - UI Wrangling
-- (void)hideBars
+- (IBAction)toggleBarVisibility:(id)sender
 {
-    if (!self.view.window)
-        return;
+    [self.barVisibilityTimer invalidate];
     
-    if (self.barsAreHidden)
-        return;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.navigationController.navigationBar.alpha = 0.0f;
-    }];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-    self.barsAreHidden = YES;
-}
-
-- (IBAction)showBars
-{
     if (!self.barsAreHidden)
     {
         [self hideBars];
         return;
     }
     
+    [self showBars];
+}
+
+- (void)hideBars
+{
+    self.barsAreHidden = YES;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.navigationController.navigationBar.alpha = 0.0f;
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    }];
+}
+
+- (void)showBars
+{
+    self.barsAreHidden = NO;
+    [self startTimer];
+    
     [UIView animateWithDuration:0.3 animations:^{
         self.navigationController.navigationBar.alpha = 1.0f;
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     }];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideBars) userInfo:nil repeats:NO];
-    self.barsAreHidden = NO;
+}
+
+- (void)startTimer
+{
+    self.barVisibilityTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideBars) userInfo:nil repeats:NO];
 }
 
 #pragma mark - UIScrollViewDelegate

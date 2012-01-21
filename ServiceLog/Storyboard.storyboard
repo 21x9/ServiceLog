@@ -326,7 +326,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="wLJ-eX-Dvs">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="wLJ-eX-Dvs">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
@@ -352,11 +352,11 @@
                 </viewController>
                 <tapGestureRecognizer id="ga9-uS-BJp">
                     <connections>
-                        <action selector="showBars" destination="DNp-4c-hpF" id="KRd-gh-VVg"/>
+                        <action selector="toggleBarVisibility:" destination="DNp-4c-hpF" id="MUj-bj-cdL"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1642" y="11"/>
+            <point key="canvasLocation" x="1642" y="21"/>
         </scene>
         <scene sceneID="Orh-wS-Tkb">
             <objects>
@@ -612,7 +612,7 @@
         <class className="PhotoViewerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewerViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showBars"/>
+                <relationship kind="action" name="toggleBarVisibility"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
