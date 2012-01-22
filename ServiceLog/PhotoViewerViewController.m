@@ -8,7 +8,7 @@
 
 #import "PhotoViewerViewController.h"
 
-@interface PhotoViewerViewController ()
+@interface PhotoViewerViewController () <UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
@@ -147,6 +147,12 @@
         imageViewFrame.origin.y = 0.0f;
     
     self.imageView.frame = imageViewFrame;
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 @end

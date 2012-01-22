@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIView *editPhotoView;
 @property (strong, nonatomic) UIImagePickerController *imagePickerController;
 @property (strong, nonatomic) UIView *savingPhotoView;
+@property (strong, nonatomic) IBOutlet UITextField *vinTextField;
 
 - (IBAction)imageViewTapped:(id)sender;
 
@@ -44,6 +45,7 @@
 @synthesize editPhotoView;
 @synthesize imagePickerController;
 @synthesize savingPhotoView;
+@synthesize vinTextField;
 
 #pragma mark - Getters
 - (UIImagePickerController *)imagePickerController
@@ -81,6 +83,9 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.editPhotoView.alpha = (editing) ? 1.0f : 0.0f;
     }];
+    
+    self.vinTextField.enabled = editing;
+    [self.vinTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,7 +99,7 @@
     if ([segue.identifier isEqualToString:@"ShowVehiclePhoto"])
     {
         PhotoViewerViewController *pvvc = segue.destinationViewController;
-        pvvc.image = [UIImage imageWithData:self.car.fullImage];
+        pvvc.image = [[UIImage alloc] initWithData:self.car.fullImage];
     }
 }
 
@@ -191,12 +196,15 @@
         view.alpha = 1.0f;
     }];
     
-    UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    CGSize screenBoundsSize = [UIScreen mainScreen].bounds.size;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGSize screenResolution = CGSizeMake(screenBoundsSize.width * scale, screenBoundsSize.height * scale);
+    UIImage *originalImage = [[info objectForKey:UIImagePickerControllerOriginalImage] imageToFitSize:screenResolution method:MGImageResizeScale];
     UIImage *thumbnail = [originalImage imageToFitSize:CGSizeMake(68.0f, 68.0f) method:MGImageResizeCrop];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *fullImageData = UIImageJPEGRepresentation(originalImage, 0.75f);
-        NSData *thumbnailData = UIImageJPEGRepresentation(thumbnail, 0.75);
+        NSData *fullImageData = UIImagePNGRepresentation(originalImage);
+        NSData *thumbnailData = UIImagePNGRepresentation(thumbnail);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.car.fullImage = fullImageData;
@@ -208,9 +216,17 @@
             if (![self.car.managedObjectContext save:&error])
                 NSLog(@"Couldn't save context. %@, %@", error, error.userInfo);
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:^{
+                self.imagePickerController = nil;
+            }];
         });
     });
+}
+
+#pragma mark - UITableViewDelegate
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
 }
 
 @end

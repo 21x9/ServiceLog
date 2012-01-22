@@ -86,6 +86,7 @@
 
 - (void)viewDidUnload
 {
+    self.fetchedResultsController.delegate = nil;
     self.fetchedResultsController = nil;
     [super viewDidUnload];
 }
