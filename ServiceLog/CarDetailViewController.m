@@ -64,7 +64,6 @@
 {
     [super viewDidLoad];
     
-    self.title = self.car.makeAndModel;
     self.vehicleImageView.image = [UIImage imageWithData:self.car.thumbnail];
     self.vehicleLabel.text = self.car.makeAndModel;
     

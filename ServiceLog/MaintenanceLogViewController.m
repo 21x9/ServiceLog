@@ -82,6 +82,7 @@
 {
     [super viewDidLoad];
     [self setupTableHeader];
+    self.title = self.car.makeAndModel;
 }
 
 - (void)viewDidUnload
