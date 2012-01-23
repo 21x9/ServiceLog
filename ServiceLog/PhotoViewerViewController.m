@@ -37,9 +37,9 @@
 {
     [super viewDidLoad];
     self.imageView.image = self.image;
-    
-    self.scrollView.minimumZoomScale = 1.0f;
-    self.scrollView.maximumZoomScale = 2.0f;
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidBecomeActiveNotification object:nil queue:nil usingBlock:^(NSNotification *notification) {
+        [self showBars];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,6 +61,12 @@
     [self.barVisibilityTimer invalidate];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
+
+- (void)viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidUnload];
 }
 
 #pragma mark - UIViewController Overrides
