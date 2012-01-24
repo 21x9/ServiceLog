@@ -71,7 +71,9 @@
 {
     [super viewDidLoad];
     
-    self.vehicleImageView.image = [UIImage imageWithData:self.car.thumbnail];
+    if (self.car.thumbnail) 
+        self.vehicleImageView.image = [UIImage imageWithData:self.car.thumbnail];
+    
     self.vehicleLabel.text = self.car.makeAndModel;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;

@@ -105,7 +105,9 @@
 #pragma mark - View Helpers
 - (void)setupTableHeader
 {
-    self.vehicleImageView.image = [UIImage imageWithData:self.car.thumbnail];
+    if (self.car.thumbnail)
+        self.vehicleImageView.image = [UIImage imageWithData:self.car.thumbnail];
+    
     self.vehicleLabel.text = self.car.makeAndModel;
     
     self.vehicleImageView.layer.cornerRadius = 4.0f;

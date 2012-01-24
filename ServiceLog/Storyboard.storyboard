@@ -376,7 +376,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="288"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="2013-Ford-Escape-Front-Angle3-96x96.jpg" id="MWB-ub-whv">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Placeholder.png" id="MWB-ub-whv">
                                             <rect key="frame" x="10" y="210" width="68" height="68"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </imageView>
@@ -477,7 +477,7 @@
                                     <rect key="frame" x="10" y="210" width="68" height="68"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="HzS-vJ-EEe">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Placeholder.png" id="HzS-vJ-EEe">
                                             <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <gestureRecognizers/>
@@ -668,7 +668,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2013-Ford-Escape-Front-Angle3-96x96.jpg" width="96" height="96"/>
+        <image name="Placeholder.png" width="68" height="68"/>
         <image name="TableHeaderShadowArrow.png" width="320" height="20"/>
         <image name="WhiteDisclosureIndicator.png" width="8" height="13"/>
     </resources>
