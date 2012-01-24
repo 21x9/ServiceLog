@@ -2,20 +2,25 @@
 //  Car.m
 //  ServiceLog
 //
-//  Created by Mark Adams on 1/18/12.
+//  Created by Jennifer Clarke on 1/23/12.
 //  Copyright (c) 2012 Interstellar Apps. All rights reserved.
 //
 
 #import "Car.h"
 #import "Maintenance.h"
 
+
 @implementation Car
 
+@dynamic fullImage;
 @dynamic make;
 @dynamic model;
-@dynamic year;
-@dynamic fullImage;
 @dynamic thumbnail;
+@dynamic year;
+@dynamic vin;
+@dynamic lugNutTorque;
+@dynamic bracketTorque;
+@dynamic knuckleTorque;
 @dynamic maintenanceEvents;
 
 @end

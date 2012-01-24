@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D4F461D14C7EEEB0081E327 /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4F461C14C7EEEB0081E327 /* Car.m */; };
 		4D4F462214C7F8AB0081E327 /* UIImage+ProportionalFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4F462114C7F8AB0081E327 /* UIImage+ProportionalFill.m */; };
 		4D4F462514C805270081E327 /* PhotoViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4F462414C805270081E327 /* PhotoViewerViewController.m */; };
 		4D644D3714C79756005A9D9C /* CarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644D3614C79756005A9D9C /* CarDetailViewController.m */; };
@@ -28,6 +27,7 @@
 		7B393C4F14C2318F0007523E /* Maintenance+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B393C4E14C2318F0007523E /* Maintenance+Helpers.m */; };
 		7B393C5314C2327F0007523E /* Car+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B393C5214C2327F0007523E /* Car+Helpers.m */; };
 		7B3AFB2B14BE988C00900284 /* YearCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3AFB2A14BE988C00900284 /* YearCell.m */; };
+		7B55B1A314CE4C5F002FDCC0 /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B55B1A214CE4C5F002FDCC0 /* Car.m */; };
 		7B82621314BCE9D800F79B8A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B82621214BCE9D800F79B8A /* Storyboard.storyboard */; };
 		7B82621A14BCEE6800F79B8A /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B82621814BCEE6800F79B8A /* CarsViewController.m */; };
 		7B85B9CF14C36B12009AAB39 /* AddMaintenanceEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B85B9CE14C36B12009AAB39 /* AddMaintenanceEventViewController.m */; };
@@ -39,8 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4D4F461B14C7EEEB0081E327 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
-		4D4F461C14C7EEEB0081E327 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		4D4F462014C7F8AB0081E327 /* UIImage+ProportionalFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ProportionalFill.h"; sourceTree = "<group>"; };
 		4D4F462114C7F8AB0081E327 /* UIImage+ProportionalFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ProportionalFill.m"; sourceTree = "<group>"; };
 		4D4F462314C805270081E327 /* PhotoViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewerViewController.h; sourceTree = "<group>"; };
@@ -73,6 +71,8 @@
 		7B393C5214C2327F0007523E /* Car+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Car+Helpers.m"; sourceTree = "<group>"; };
 		7B3AFB2914BE988C00900284 /* YearCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearCell.h; sourceTree = "<group>"; };
 		7B3AFB2A14BE988C00900284 /* YearCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCell.m; sourceTree = "<group>"; };
+		7B55B1A114CE4C5F002FDCC0 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		7B55B1A214CE4C5F002FDCC0 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		7B82621214BCE9D800F79B8A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		7B82621714BCEE6800F79B8A /* CarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarsViewController.h; sourceTree = "<group>"; };
 		7B82621814BCEE6800F79B8A /* CarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
@@ -192,9 +192,9 @@
 			children = (
 				4D6A892314C62326007D6E27 /* Maintenance.h */,
 				4D6A892414C62326007D6E27 /* Maintenance.m */,
-				4D4F461B14C7EEEB0081E327 /* Car.h */,
-				4D4F461C14C7EEEB0081E327 /* Car.m */,
 				4DFB85C914BBAB6A00771A80 /* ServiceLog.xcdatamodeld */,
+				7B55B1A114CE4C5F002FDCC0 /* Car.h */,
+				7B55B1A214CE4C5F002FDCC0 /* Car.m */,
 				7B393C4D14C2318F0007523E /* Maintenance+Helpers.h */,
 				7B393C4E14C2318F0007523E /* Maintenance+Helpers.m */,
 				7B393C5114C2327F0007523E /* Car+Helpers.h */,
@@ -311,9 +311,9 @@
 				7B85B9D314C3A90C009AAB39 /* IAEditableLabel.m in Sources */,
 				4D6A892514C62326007D6E27 /* Maintenance.m in Sources */,
 				4D644D3714C79756005A9D9C /* CarDetailViewController.m in Sources */,
-				4D4F461D14C7EEEB0081E327 /* Car.m in Sources */,
 				4D4F462214C7F8AB0081E327 /* UIImage+ProportionalFill.m in Sources */,
 				4D4F462514C805270081E327 /* PhotoViewerViewController.m in Sources */,
+				7B55B1A314CE4C5F002FDCC0 /* Car.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

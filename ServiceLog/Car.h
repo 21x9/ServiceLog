@@ -2,7 +2,7 @@
 //  Car.h
 //  ServiceLog
 //
-//  Created by Mark Adams on 1/18/12.
+//  Created by Jennifer Clarke on 1/23/12.
 //  Copyright (c) 2012 Interstellar Apps. All rights reserved.
 //
 
@@ -13,11 +13,15 @@
 
 @interface Car : NSManagedObject
 
+@property (nonatomic, retain) NSData * fullImage;
 @property (nonatomic, retain) NSString * make;
 @property (nonatomic, retain) NSString * model;
-@property (nonatomic, retain) NSNumber * year;
-@property (nonatomic, retain) NSData * fullImage;
 @property (nonatomic, retain) NSData * thumbnail;
+@property (nonatomic, retain) NSNumber * year;
+@property (nonatomic, retain) NSString * vin;
+@property (nonatomic, retain) NSString * lugNutTorque;
+@property (nonatomic, retain) NSString * bracketTorque;
+@property (nonatomic, retain) NSString * knuckleTorque;
 @property (nonatomic, retain) NSSet *maintenanceEvents;
 @end
 

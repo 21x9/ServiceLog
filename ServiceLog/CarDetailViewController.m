@@ -22,8 +22,12 @@
 @property (strong, nonatomic) UIImagePickerController *imagePickerController;
 @property (strong, nonatomic) UIView *savingPhotoView;
 @property (strong, nonatomic) IBOutlet UITextField *vinTextField;
+@property (strong, nonatomic) IBOutlet UITextField *lugNutTextField;
+@property (strong, nonatomic) IBOutlet UITextField *bracketTextField;
+@property (strong, nonatomic) IBOutlet UITextField *knuckleTextField;
 
 - (IBAction)imageViewTapped:(id)sender;
+- (void)saveDetails;
 
 - (void)viewPhoto;
 - (void)editPhoto;
@@ -46,6 +50,9 @@
 @synthesize imagePickerController;
 @synthesize savingPhotoView;
 @synthesize vinTextField;
+@synthesize lugNutTextField;
+@synthesize bracketTextField;
+@synthesize knuckleTextField;
 
 #pragma mark - Getters
 - (UIImagePickerController *)imagePickerController
@@ -72,6 +79,11 @@
     self.vehicleView.layer.borderColor = [UIColor colorWithWhite:0.0f alpha:0.35f].CGColor;
     self.vehicleView.layer.borderWidth = 1.0f;
     self.vehicleView.layer.masksToBounds = YES;
+    
+    self.vinTextField.text = self.car.vin;
+    self.lugNutTextField.text = self.car.lugNutTorque;
+    self.bracketTextField.text = self.car.bracketTorque;
+    self.knuckleTextField.text = self.car.knuckleTorque;
 }
 
 #pragma mark - UIViewController Overrides
@@ -85,6 +97,13 @@
     
     self.vinTextField.enabled = editing;
     [self.vinTextField becomeFirstResponder];
+    
+    self.lugNutTextField.enabled = editing;
+    self.knuckleTextField.enabled = editing;
+    self.bracketTextField.enabled = editing;
+    
+    if (!editing)
+        [self saveDetails];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,6 +131,19 @@
     }
     
     [self viewPhoto];
+}
+
+- (void)saveDetails
+{
+    self.car.vin = self.vinTextField.text;
+    self.car.lugNutTorque = self.lugNutTextField.text;
+    self.car.bracketTorque = self.bracketTextField.text;
+    self.car.knuckleTorque = self.knuckleTextField.text;
+    
+    NSError *error;
+    
+    if (![self.car.managedObjectContext save:&error])
+        NSLog(@"Couldn't save details. %@, %@", error, error.userInfo);
 }
 
 #pragma mark - Vehicle Image Management

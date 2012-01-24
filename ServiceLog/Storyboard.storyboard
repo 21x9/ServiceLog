@@ -319,7 +319,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSK-ZD-rEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController wantsFullScreenLayout="YES" id="DNp-4c-hpF" customClass="PhotoViewerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hb9-iz-bfz">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" maximumZoomScale="2" id="mvf-a0-3Wx">
@@ -465,7 +465,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pA-5p-pnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="pYi-O8-zS0" customClass="CarDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="sQG-x2-9mS">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <inset key="contentInset" minX="0.0" minY="-200" maxX="0.0" maxY="0.0"/>
@@ -535,7 +535,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vehicle ID #" minimumFontSize="17" clearButtonMode="whileEditing" id="YVk-JM-9qJ">
                                                     <rect key="frame" x="76" y="8" width="218" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -564,7 +564,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Lug Nut Torque" minimumFontSize="17" clearButtonMode="whileEditing" id="rZB-cP-TaX">
                                                     <rect key="frame" x="76" y="8" width="218" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -589,7 +589,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Caliper to Bracket Torque" minimumFontSize="17" clearButtonMode="whileEditing" id="MhU-09-t4r">
                                                     <rect key="frame" x="76" y="8" width="218" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -614,7 +614,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Caliper to Knuckle Torque" minimumFontSize="17" clearButtonMode="whileEditing" id="AI4-tn-nhC">
                                                     <rect key="frame" x="76" y="8" width="218" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -633,7 +633,10 @@
                     <navigationItem key="navigationItem" title="Details" id="MXp-6h-38n"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="bracketTextField" destination="MhU-09-t4r" id="jzg-EE-VgM"/>
                         <outlet property="editPhotoView" destination="xgK-Ka-bbM" id="bPm-xg-shK"/>
+                        <outlet property="knuckleTextField" destination="AI4-tn-nhC" id="G1B-xi-H8i"/>
+                        <outlet property="lugNutTextField" destination="rZB-cP-TaX" id="Asu-BT-cnz"/>
                         <outlet property="vehicleImageView" destination="HzS-vJ-EEe" id="yFS-Tf-Sqw"/>
                         <outlet property="vehicleLabel" destination="gsR-H4-rpc" id="5Mq-7G-uNe"/>
                         <outlet property="vehicleView" destination="UDh-ze-PvS" id="6fG-Hw-Jxy"/>
@@ -699,7 +702,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CarDetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="imageViewTapped:"/>
+                <relationship kind="outlet" name="bracketTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="editPhotoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="knuckleTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lugNutTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="vehicleImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="vehicleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="vehicleView" candidateClass="UIView"/>
