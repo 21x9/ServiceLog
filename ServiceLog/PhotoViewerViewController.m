@@ -107,6 +107,9 @@
 
 - (void)hideBars
 {
+    if (!self.view.window)
+        return;
+    
     self.barsAreHidden = YES;
     
     [UIView animateWithDuration:0.3 animations:^{
